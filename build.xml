@@ -17,7 +17,7 @@
     <jar destfile="gwt-rest.jar">
       <fileset dir="bin">
         <include name="**/*.class"/>
-		<exclude name="**/test/**"/>
+        <exclude name="**/test/**"/>
       </fileset>
       <fileset dir="src">
         <include name="**"/>
@@ -30,6 +30,19 @@
     <delete>
       <fileset dir="bin" includes="**/*.class"/>
     </delete>
+  </target>
+
+  <target name="doc" depends="compile">
+    <javadoc destdir="doc">
+      <link href="http://java.sun.com/j2se/1.4.2/docs/api/"/>
+
+      <packageset dir="src" defaultexcludes="yes">
+        <exclude name="**/package.html"/>
+      </packageset>
+
+      <classpath refid="project.class.path"/>
+      <classpath location="bin"/>
+    </javadoc>
   </target>
 
   <target name="all" depends="package"/>
